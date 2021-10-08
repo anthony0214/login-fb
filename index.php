@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<!-- title of our page -->
-		<title>Easy, Code Is</title>
+		<title>TMA - Dashboard</title>
 
 		<!-- include fonts -->
 		<link href="https://fonts.googleapis.com/css?family=Coda" rel="stylesheet">
@@ -14,128 +14,70 @@
 		<!-- need this so everything looks good on mobile devices -->
 		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 
-		<!-- css styles for our home page-->
-		<link href="css/global.css" rel="stylesheet" type="text/css">
-		<link href="css/home.css" rel="stylesheet" type="text/css">
 
-		<!-- jquery -->
-		<script type="text/javascript" src="js/jquery.js"></script>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-		<!-- include our loader overlay script -->
-		<script type="text/javascript" src="js/loader.js"></script>
-
-		<script>
-			$( function() { // do things when the document is ready
-				// initialize our loader overlay
-				loader.initialize();
-
-				$( '#load_test' ).on( 'click', function() { // on click for our load test link
-					// show our loading overlay
-					loader.showLoader();
-
-					setInterval( function() { // after 3 seconds, hide our loading overlay
-						loader.hideLoader();
-					}, 3000 );
-				} );
-
-				$( '#logout_link' ).on( 'click', function() { // on click for our logout link
-					// show our loading overlay
-					loader.showLoader();
-
-					// server side logout
-					$.ajax( {
-						url: 'php/process_logout.php',
-						type: 'post',
-						dataType: 'json',
-						success: function( data ) {
-							loader.hideLoader();
-							window.location.href = "index.php";
-						}
-					} );
-				} );
-			} );
-		</script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 	</head>
 	<body>
-		<div class="background-video-container">
-			<video class="background-video-element" autoplay muted loop >
-				<source src="assets/background_video.mp4" />
-			</video>
-			<img class="background-video-image" src="assets/background_video_image.png" />
-			<div class="background-video-overlay"></div>
-			<div class="background-video-text-overlay">
-				<div>Easy, Code Is</div>
-				<div class="action-container pc-only">
-					<?php if ( isLoggedIn() ) : ?>
-						<!-- <div class="logged-in-text">
-							<?php print_r($_SESSION['user_info']); ?>
-						</div> -->
-						<div class="logged-in-text">Logged in as <b><?php echo $_SESSION['user_info']['first_name']; ?></b></div>
-					<?php else : ?>
-						<a class="a-action" href="signup.php">
-							<div class="button-container">
-								<div class="button-container-pad">
-									SIGN UP
-								</div>
-							</div>
-						</a>
-						<a class="a-action" href="login.php">
-							<div class="button-container">
-								<div class="button-container-pad">
-									LOGIN
-								</div>
-							</div>
-						</a>
-					<?php endif; ?>
-				</div>
-			</div>
-		</div>
-		<div class="content">
-			<div class="content-inner">
-				<div class="content-inner-padding">
-					<div class="action-container mobile-only">
+
+		<?php 
+		
+			if(isLoggedIn()){
+				echo "mka login ku! index";
+			}else{
+				echo 'ekupa maka login index';
+			}
+		?>
+		
+	
+		
+			
+				
+					
 						<?php if ( isLoggedIn() ) : ?>
 							<div class="logged-in-text">Logged in as <b><?php echo $_SESSION['user_info']['first_name']; ?></b></div>
 						<?php else : ?>
-							<a class="a-action" href="signup.php">
+							<a href="signup.php">
 								<div class="button-container">
 									<div class="button-container-pad">
 										SIGN UP
 									</div>
 								</div>
 							</a>
-							<a class="a-action" href="login.php">
-								<div class="button-container default-margin-top">
-									<div class="button-container-pad">
-										LOGIN
-									</div>
-								</div>
-							</a>
+							<a href="login.php">LOGIN</a>
 						<?php endif; ?>
-					</div>
-					<h1>
-						Welcome to Easy, Code Is!
-					</h1>
-					<div>
-						This is the website where you, the users, decide what features get added. Comment on any of my videos and let me know what you want to learn and see implemented! I will constantly be building on this website, adding features and creating videos based on what you, the users, want to see and learn.
-					</div>
-				</div>
-			</div>
-		</div>
+					
+					
+					
+				
+			
+		
+		<hr>
+
+		
 		<div class="footer-container">
-			<div><a class="a-default" href="https://github.com/jstolpe/easycodeis">View Easy, Code Is on GitHub</a></div>
-			<div><span id="load_test">Loading Overlay Test (lasts 3 sec)</span></div>
 			<?php if ( isLoggedIn() ) : ?>
+				<?php echo 'yes im LOG in'; ?>
 				<?php if ( isAdmin() ) : ?>
+					<?php echo 'yes im ADMIN in'; ?>
 					<div>
 						<a class="a-default" href="adminpanel.php">Admin Panel</a>
 					</div>
 				<?php endif; ?>
+				<a class="a-default" href="myaccount.php">My Account</a>			
+				<input type = "button" onclick = "logout()" value = "Logout" /> 
 				<div>
-					<a class="a-default" href="myaccount.php">My Account</a>
+					
 				</div>
-				<div id="logout_link" class="a-default">Logout</div>
 			<?php endif; ?>
 		</div>
+
+
+		<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+		
+
+		<script src="assets/js/app.js"></script>
 	</body>
+
 </html>

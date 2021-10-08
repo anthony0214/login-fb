@@ -11,7 +11,7 @@
 	define( 'FB_APP_STATE', 'eciphp' ); // verify state
 
 	// include config (creds and things we keep out of www and repo)
-	include_once __DIR__ . ( PHP_OS == 'Linux' ? '' : '/' ) . '/../creds/config.php';
+	include_once __DIR__ . ( PHP_OS == 'Linux' ? '' : '/' ) . '/creds/config.php';
 
 	// include global functions
 	include_once __DIR__  . '/php/functions.php';
@@ -19,8 +19,3 @@
 	// include facebook api functions
 	include_once __DIR__  . '/php/facebook_api.php';
 
-	// include twitter api functions
-	include_once __DIR__  . '/php/twitter_api.php';
-
-	// include twitch api functions
-	include_once __DIR__  . '/php/twitch_api.php';

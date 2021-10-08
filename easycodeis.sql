@@ -19,10 +19,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `easycodeis`
+-- Database: `a1`
 --
 CREATE DATABASE IF NOT EXISTS `easycodeis` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-USE `easycodeis`;
+USE `a1`;
 
 -- --------------------------------------------------------
 

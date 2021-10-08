@@ -31,15 +31,6 @@
 			updateRow( 'users', 'oauth_token_secret', $_SESSION['oauth_token_secret'], $userInfo['id'] );
 		}
 
-		if ( isset( $_SESSION['tw_user_info']['id'] ) ) { // if we have an twitter user id save it
-			updateRow( 'users', 'tw_user_id', $_SESSION['tw_user_info']['id'], $userInfo['id'] );
-		}
-
-		if ( isset( $_SESSION['twitch_user_info'] ) ) { // if we have an twitch info save it
-			updateRow( 'users', 'twitch_user_id', $_SESSION['twitch_user_info']['id'], $userInfo['id'] );
-			updateRow( 'users', 'twitch_access_token', $_SESSION['twitch_user_info']['access_token'], $userInfo['id'] );
-			updateRow( 'users', 'twitch_refresh_token', $_SESSION['twitch_user_info']['refresh_token'], $userInfo['id'] );
-		}
 
 		// get updated info
 		$userInfo = getUserWithEmailAddress( trim( $_POST['email'] ) );
