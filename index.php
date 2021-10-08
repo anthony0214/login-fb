@@ -21,32 +21,25 @@
 	</head>
 	<body>
 
-		<?php 
-		
-			if(isLoggedIn()){
-				echo "mka login ku! index";
-			}else{
-				echo 'ekupa maka login index';
-			}
-		?>
+	<?php if ( isLoggedIn() ) : ?>
+		<div class="logged-in-text">Logged in as <b><?php echo $_SESSION['user_info']['first_name']; ?></b></div>
+	<?php else : ?>
+		<a href="signup.php">
+			<div class="button-container">
+				<div class="button-container-pad">
+					SIGN UP
+				</div>
+			</div>
+		</a>
+		<a href="login.php">LOGIN</a>
+	<?php endif; ?>	
 		
 	
 		
 			
 				
 					
-						<?php if ( isLoggedIn() ) : ?>
-							<div class="logged-in-text">Logged in as <b><?php echo $_SESSION['user_info']['first_name']; ?></b></div>
-						<?php else : ?>
-							<a href="signup.php">
-								<div class="button-container">
-									<div class="button-container-pad">
-										SIGN UP
-									</div>
-								</div>
-							</a>
-							<a href="login.php">LOGIN</a>
-						<?php endif; ?>
+	
 					
 					
 					
