@@ -91,7 +91,18 @@
 		$endpoint = FB_GRAPH_DOMAIN . 'me';
 
 		$params = array( // params for the endpoint
-			'fields' => 'first_name,last_name,email,picture',
+			'fields' => '
+			first_name,
+			last_name,
+			email,
+			picture,
+			gender,
+			hometown,
+			location,
+			age_range,
+			relationship_status,
+			name_format,
+			link',
 			'access_token' => $accessToken
 		);
 

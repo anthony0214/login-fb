@@ -184,7 +184,9 @@
 									<img class="pro-img" src="<?php echo $fbUserInfo['fb_response']['picture']['data']['url']; ?>" />
 								</div>
 								<div class="pro-img-cont">
-									<?php print_r($fbUserInfo); ?>
+									<?php 
+									//print("<pre>".print_r($fbUserInfo,true)."</pre>");
+									?>
 								</div>
 							</div>
 							<div class="section-mid-container">
@@ -252,7 +254,12 @@
 										show
 									</div>
 									<div id="fb_user_info" class="show-hide-section">
-										<textarea class="show-hide-textarea"><?php print_r( $fbUserInfo['fb_response'] ); ?></textarea>
+										<textarea class="show-hide-textarea">
+											<?php 
+											// print_r( $fbUserInfo['fb_response'] ); 
+											//print("<pre>".print_r($fbUserInfo['fb_response'],true)."</pre>");
+											?>
+										</textarea>
 									</div>
 								</div>
 							</div>

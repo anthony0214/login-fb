@@ -7,10 +7,10 @@
 
 	if ( '' == $_POST['email'] || empty( $userInfo ) ) { // no email or password is invalid
 		$status = 'fail';
-		$message = 'Invalid Email or Password';
+		$message = 'Invalid Email or Password'; //invalid email
 	} elseif ( '' == $_POST['password'] || !password_verify( $_POST['password'], $userInfo['password'] ) ) { // password check
 		$status = 'fail';
-		$message = 'Invalid Email or Password';
+		$message = 'Invalid Email or Password'; //invalid password
 	} else { // all good
 		$status = 'ok';
 		$message = '';

@@ -19,19 +19,8 @@
 		<!-- need this so everything looks good on mobile devices -->
 		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 
-		
-
-		
-
-		
 	</head>
 	<body>
-		
-		
-			
-				
-					
-						
 						<form id="signup_form" name="signup_form">
 							<div id="error_message" class="error-message">
 							</div>

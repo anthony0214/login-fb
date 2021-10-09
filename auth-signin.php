@@ -1,3 +1,16 @@
+<?php
+	// load up global things
+	include_once 'autoloader.php';
+
+	if ( isset( $_GET['state'] ) && FB_APP_STATE == $_GET['state'] ) { // coming from facebook
+		// try and log the user in with $_GET vars from facebook 
+		$fbLogin = tryAndLoginWithFacebook( $_GET );
+	}
+
+	// only if you are logged out can you view the login page
+	loggedInRedirect();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,6 +43,12 @@
 	<!-- vendor css -->
 	<link rel="stylesheet" href="assets/css/style.css" id="main-style-link">
 
+	<!-- custom css -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"> 
+	<link rel="stylesheet" href="assets/css/app.css"> 
+
+
+
 
 </head>
 
@@ -40,27 +59,53 @@
 			<div class="row align-items-center text-center">
 				<div class="col-md-12">
 					<div class="card-body">
+					<form id="login_form" name="login_form" autocomplete="off" method="POST">
 						<!-- <img src="assets/images/logo-dark.svg" alt="" class="img-fluid mb-4"> -->
-						<p class="lead">TMA</p>
-						<h4 class="mb-3 f-w-400">Signin</h4>
+						<p class="lead">TMA | Login</p>
+						<!-- <h4 class="mb-3 f-w-400">Signin</h4> -->
+
+						
+						
+							
+						
+
 						<div class="input-group mb-3">
-							<span class="input-group-text"><i data-feather="mail"></i></span>
-							<input type="email" class="form-control" placeholder="Email address">
+						<span class="input-group-text"><i data-feather="mail"></i></span>
+							<?php if ( isset( $_SESSION['fb_user_info']['email'] ) ? $_SESSION['fb_user_info']['email'] : '' ) : // pre populate with facebook email ?>
+								<?php $inputEmail = $_SESSION['fb_user_info']['email']; ?>
+							<?php else : ?>
+								<?php $inputEmail = ''; ?>
+							<?php endif; ?>
+							<!-- <input class="form-input" type="text" name="email" value="<?php echo $inputEmail; ?>" /> -->
+							<input type="email" class="form-control" placeholder="Email address" name="email">
 						</div>
+
 						<div class="input-group mb-4">
 							<span class="input-group-text"><i data-feather="lock"></i></span>
-							<input type="password" class="form-control" placeholder="Password">
+							<input type="password" name="password" class="form-control" placeholder="Password">
 						</div>
-						<div class="form-group text-left mt-2">
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-								<label class="form-check-label" for="flexCheckChecked">
-									Save credentials
-								</label>
-							</div>
-						</div>
-						<button class="btn btn-block btn-primary mb-4">Signin</button>
-						<p class="mb-0 text-muted">Don’t have an account? <a href="auth-signup.html" class="f-w-400">Signup</a></p>
+
+
+						
+					</form>
+					<button class="btn btn-block btn-primary mb-4" onclick ="processLogin()">Signin</button>
+
+					
+					<div class="align-items-center text-center mb-3">-OR-</div>
+
+
+					<!-- <a href="<?php echo getFacebookLoginUrl(); ?>" class="fb btn mb-4">
+						<i data-feather="facebook" ></i> Login with Facebook
+					</a> -->
+
+					<button class="btn btn-block btn-primary mb-4 fb" onclick ="fbLogin()">
+					<i data-feather="facebook" ></i>Login with Facebook 
+					</button>
+
+	
+
+					
+					<p class="mb-0 text-muted">Don’t have an account? <a href="auth-signup.php" class="f-w-400">Signup</a></p>
 					</div>
 				</div>
 			</div>
@@ -69,11 +114,23 @@
 </div>
 <!-- [ auth-signin ] end -->
 
+	<!-- Custom Js -->
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	<script src="assets/js/app.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 <!-- Required Js -->
 <script src="assets/js/vendor-all.min.js"></script>
 <script src="assets/js/plugins/bootstrap.min.js"></script>
 <script src="assets/js/plugins/feather.min.js"></script>
 <script src="assets/js/pcoded.min.js"></script>
+<script>
+    $("body").append('<div class="fixed-button active"><a href="https://gumroad.com/dashboardkit" target="_blank" class="btn btn-md btn-success"><i class="material-icons-two-tone text-white">shopping_cart</i> Upgrade To Pro</a> </div>');
+</script>
+
+
+
+
 <script>
     $("body").append('<div class="fixed-button active"><a href="https://gumroad.com/dashboardkit" target="_blank" class="btn btn-md btn-success"><i class="material-icons-two-tone text-white">shopping_cart</i> Upgrade To Pro</a> </div>');
 </script>

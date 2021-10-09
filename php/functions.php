@@ -283,6 +283,7 @@
 		if ( isLoggedIn() ) { // user is logged in
 			// send them to the home page
 			header( 'location: index.php' );
+			//header( 'location: http://localhost/login-fb/auth-signin.php' );
 		}
 	}
 
